@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.seasar.dblauncher_0.0.1.jar" id="org.seasar.dblauncher" version="0.0.1">
+      <category name="DbLauncher"/>
+   </feature>
+   <category-def name="DbLauncher" label="DbLauncher"/>
+</site>
