@@ -61,7 +61,7 @@ public class H2PreferencesImpl implements H2Preferences {
                 IJavaProject jp = JavaCore.create(project);
                 IPath p = jp.getOutputLocation();
                 IContainer c = project.getParent().getFolder(p);
-                IPath data = c.getFullPath().append("data");
+                IPath data = c.getFullPath().append("data").append("demo");
                 result = data.toString();
             }
         } catch (JavaModelException e) {
