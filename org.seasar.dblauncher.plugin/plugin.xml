@@ -44,6 +44,7 @@
          </visibility>
          <action
                class="org.seasar.dblauncher.action.StartServerAction"
+               definitionId="org.seasar.dblauncher.command.start"
                enablesFor="1"
                icon="icons/run_exc.gif"
                id="org.seasar.dblauncher.action.start"
@@ -142,6 +143,13 @@
       <classpathVariableInitializer
             class="org.seasar.dblauncher.variable.H2SrcVariable"
             variable="H2_SRC"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.seasar.dblauncher.command.StartServerActionHandler"
+            id="org.seasar.dblauncher.command.start"
+            name="%start"/>
    </extension>
 
 </plugin>

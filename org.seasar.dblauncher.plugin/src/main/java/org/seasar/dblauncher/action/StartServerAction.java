@@ -53,7 +53,7 @@ public class StartServerAction extends AbstractProjectAction {
      * 
      * @see org.seasar.h2.action.AbstractProjectAction#run(org.eclipse.core.resources.IProject)
      */
-    protected void run(IProject project) throws CoreException {
+    public void run(IProject project) throws CoreException {
         H2Preferences pref = DbLauncherPlugin.getPreferences(project);
         if (pref != null) {
             String name = "H2 " + project.getName();

@@ -71,5 +71,5 @@ public abstract class AbstractProjectAction implements IActionDelegate {
         }
     }
 
-    protected abstract void run(IProject project) throws CoreException;
+    public abstract void run(IProject project) throws CoreException;
 }

@@ -38,7 +38,7 @@ public class StopServerAction extends AbstractProjectAction {
      * 
      * @see org.seasar.h2.action.AbstractProjectAction#run(org.eclipse.core.resources.IProject)
      */
-    protected void run(IProject project) throws CoreException {
+    public void run(IProject project) throws CoreException {
         ILaunch launch = DbLauncherPlugin.getLaunch(project);
         if (launch != null) {
             launch.terminate();
