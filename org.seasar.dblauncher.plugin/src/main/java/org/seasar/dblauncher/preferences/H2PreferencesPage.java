@@ -15,10 +15,13 @@
  */
 package org.seasar.dblauncher.preferences;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -37,6 +40,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
+import org.h2.server.TcpServer;
 import org.seasar.dblauncher.Constants;
 import org.seasar.dblauncher.DbLauncherPlugin;
 import org.seasar.dblauncher.nls.Messages;
@@ -122,6 +126,7 @@ public class H2PreferencesPage extends PropertyPage implements
         });
 
         setUpStoredValue();
+        setUpPortNos();
         return composite;
     }
 
@@ -138,6 +143,32 @@ public class H2PreferencesPage extends PropertyPage implements
         this.webPortNo.setText(store.getString(Constants.PREF_WEB_PORTNO));
         this.user.setText(store.getString(Constants.PREF_USER));
         this.password.setText(store.getString(Constants.PREF_PASSWORD));
+    }
+
+    private void setUpPortNos() {
+        IProject project = getProject();
+        if (ProjectUtil.hasNature(project, Constants.ID_NATURE) == false) {
+            IWorkspaceRoot root = ProjectUtil.getWorkspaceRoot();
+            IProject[] all = root.getProjects();
+            Set nos = new HashSet();
+            for (int i = 0; i < all.length; i++) {
+                if (ProjectUtil.hasNature(all[i], Constants.ID_NATURE)) {
+                    IPreferenceStore other = new ScopedPreferenceStore(
+                            new ProjectScope(all[i]), Constants.ID_PLUGIN);
+                    nos.add(other.getString(Constants.PREF_DB_PORTNO));
+                    nos.add(other.getString(Constants.PREF_WEB_PORTNO));
+                }
+            }
+            int dbPort = TcpServer.DEFAULT_PORT - 1;
+            while (nos.contains(String.valueOf(++dbPort))) {
+            }
+            nos.add(String.valueOf(dbPort));
+            int webPort = org.h2.engine.Constants.DEFAULT_HTTP_PORT - 1;
+            while (nos.contains(String.valueOf(++webPort))) {
+            }
+            this.dbPortNo.setText(String.valueOf(dbPort));
+            this.webPortNo.setText(String.valueOf(webPort));
+        }
     }
 
     /**
