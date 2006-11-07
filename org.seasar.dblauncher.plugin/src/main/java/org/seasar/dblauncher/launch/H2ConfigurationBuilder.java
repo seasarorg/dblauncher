@@ -85,10 +85,10 @@ public class H2ConfigurationBuilder {
                     getName());
             copy.setAttribute(
                     IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME,
-                    project.getProject().getName());
+                    project.getName());
             copy.setAttribute(
                     IJavaLaunchConfigurationConstants.ATTR_WORKING_DIRECTORY,
-                    project.getProject().getLocation().toString());
+                    project.getLocation().toString());
 
             if (hasMain(getProject(), getMainClass()) == false) {
                 copy
