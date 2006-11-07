@@ -146,7 +146,11 @@
    </extension>
    <extension
          point="org.eclipse.ui.commands">
+      <category
+            id="org.seasar.dblauncher.category"
+            name="DbLauncher"/>
       <command
+            categoryId="org.seasar.dblauncher.category"
             defaultHandler="org.seasar.dblauncher.command.StartServerActionHandler"
             id="org.seasar.dblauncher.command.start"
             name="%start"/>
