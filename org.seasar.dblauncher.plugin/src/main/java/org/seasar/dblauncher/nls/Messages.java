@@ -41,4 +41,6 @@ public class Messages extends NLS {
     public static String LABEL_USER;
 
     public static String LABEL_PASSWORD;
+
+    public static String ERR_ONLY_NUMERIC;
 }

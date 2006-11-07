@@ -27,7 +27,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -56,7 +59,7 @@ import org.seasar.framework.util.StringUtil;
 public class H2PreferencesPage extends PropertyPage implements
         IWorkbenchPropertyPage {
 
-    private Pattern numbers = Pattern.compile("\\d*");
+    private Pattern numeric = Pattern.compile("\\d*");
 
     private Button useH2;
 
@@ -98,9 +101,11 @@ public class H2PreferencesPage extends PropertyPage implements
 
         this.isDebug = new Button(createDefaultComposite(composite), SWT.CHECK);
         this.isDebug.setText(Messages.LABEL_IS_DEBUG);
-
+        NumberVerifier nv = new NumberVerifier();
         this.dbPortNo = createPart(composite, Messages.LABEL_DB_PORTNO);
+        this.dbPortNo.addModifyListener(nv);
         this.webPortNo = createPart(composite, Messages.LABEL_WEB_PORTNO);
+        this.webPortNo.addModifyListener(nv);
         this.user = createPart(composite, Messages.LABEL_USER);
         this.password = createPart(composite, Messages.LABEL_PASSWORD,
                 SWT.BORDER | SWT.PASSWORD);
@@ -128,6 +133,22 @@ public class H2PreferencesPage extends PropertyPage implements
         setUpStoredValue();
         setUpPortNos();
         return composite;
+    }
+
+    private class NumberVerifier implements ModifyListener {
+        public void modifyText(ModifyEvent e) {
+            if (e.widget instanceof Text) {
+                Text t = (Text) e.widget;
+                boolean is = false;
+                if (is = numeric.matcher(t.getText()).matches()) {
+                    setErrorMessage(null);
+                } else {
+                    setErrorMessage(NLS.bind(Messages.ERR_ONLY_NUMERIC,
+                            "Port No"));
+                }
+                setValid(is);
+            }
+        }
     }
 
     /**
@@ -248,12 +269,12 @@ public class H2PreferencesPage extends PropertyPage implements
                 }
                 String no = this.dbPortNo.getText();
                 if (StringUtil.isEmpty(no) == false
-                        && numbers.matcher(no).matches()) {
+                        && numeric.matcher(no).matches()) {
                     store.setValue(Constants.PREF_DB_PORTNO, no);
                 }
                 no = this.webPortNo.getText();
                 if (StringUtil.isEmpty(no) == false
-                        && numbers.matcher(no).matches()) {
+                        && numeric.matcher(no).matches()) {
                     store.setValue(Constants.PREF_WEB_PORTNO, no);
                 }
                 result = true;
