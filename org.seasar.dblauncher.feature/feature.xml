@@ -26,12 +26,12 @@ governing permissions and limitations under the License.
          id="org.seasar.eclipse.common"
          download-size="0"
          install-size="0"
-         version="0.0.1"/>
+         version="0.0.2"/>
 
    <plugin
          id="org.seasar.dblauncher"
          download-size="0"
          install-size="0"
-         version="0.0.1"/>
+         version="0.0.2"/>
 
 </feature>
