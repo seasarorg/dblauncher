@@ -84,6 +84,10 @@ public class StartServerAction extends AbstractProjectAction {
         IWorkspaceRoot root = ProjectUtil.getWorkspaceRoot();
         IContainer c = root.getFolder(new Path(pref.getBaseDir()));
         IPath p = c.getLocation();
+        if (p == null) {
+            p = root.getLocation();
+            p = p.append(pref.getBaseDir());
+        }
         stb.append(" -baseDir \"");
         stb.append(p.toString());
         stb.append("\"");
