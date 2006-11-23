@@ -154,6 +154,11 @@
             defaultHandler="org.seasar.dblauncher.command.StartServerActionHandler"
             id="org.seasar.dblauncher.command.start"
             name="%start"/>
+      <command
+            categoryId="org.seasar.dblauncher.category"
+            defaultHandler="org.seasar.dblauncher.command.StopServerActionHandler"
+            id="org.seasar.dblauncher.command.stop"
+            name="Stop H2 Server"/>
    </extension>
 
 </plugin>
