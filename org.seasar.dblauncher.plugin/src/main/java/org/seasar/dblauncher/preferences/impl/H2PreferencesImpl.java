@@ -15,13 +15,12 @@
  */
 package org.seasar.dblauncher.preferences.impl;
 
-import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.seasar.dblauncher.Constants;
@@ -60,11 +59,14 @@ public class H2PreferencesImpl implements H2Preferences {
             if (project != null) {
                 IJavaProject jp = JavaCore.create(project);
                 IPath p = jp.getOutputLocation();
-                IContainer c = project.getParent().getFolder(p);
-                IPath data = c.getFullPath().append("data").append("demo");
+                IFolder f = project.getParent().getFolder(p.append("data"));
+                if (f.exists() == false) {
+                    f.create(true, true, null);
+                }
+                IPath data = f.getFullPath();
                 result = data.toString();
             }
-        } catch (JavaModelException e) {
+        } catch (Exception e) {
             DbLauncherPlugin.log(e);
         }
 
