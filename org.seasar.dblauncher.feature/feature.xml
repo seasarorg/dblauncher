@@ -2,7 +2,7 @@
 <feature
       id="org.seasar.dblauncher"
       label="%plugin.brand"
-      version="0.0.1"
+      version="0.0.2"
       provider-name="%author">
 
    <copyright>
@@ -21,6 +21,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
    </license>
+
+   <url>
+      <update label="Seasar Plugin Update Site" url="http://eclipse.seasar.org/updates/3.1/"/>
+   </url>
 
    <plugin
          id="org.seasar.eclipse.common"
