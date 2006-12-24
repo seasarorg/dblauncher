@@ -18,6 +18,7 @@ package org.seasar.dblauncher.decorator;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.debug.core.model.ITerminate;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -69,10 +70,17 @@ public class DBRunningDecorator extends LabelProvider implements
                 Object o = project
                         .getSessionProperty(Constants.KEY_SERVER_STATE);
                 H2Preferences pref = DbLauncherPlugin.getPreferences(project);
-                if (o != null) {
-                    decoration.addSuffix(" [H2:" + pref.getDbPortNo() + "]");
-                    decoration.addOverlay(Images.RUNNING,
-                            IDecoration.BOTTOM_RIGHT);
+                if (o != null && o instanceof ITerminate) {
+                    ITerminate t = (ITerminate) o;
+                    if (t.isTerminated()) {
+                        project.setSessionProperty(Constants.KEY_SERVER_STATE,
+                                null);
+                    } else {
+                        decoration
+                                .addSuffix(" [H2:" + pref.getDbPortNo() + "]");
+                        decoration.addOverlay(Images.RUNNING,
+                                IDecoration.BOTTOM_RIGHT);
+                    }
                 }
             }
         } catch (CoreException e) {
