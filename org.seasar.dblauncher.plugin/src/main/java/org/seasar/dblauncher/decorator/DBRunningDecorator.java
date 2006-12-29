@@ -36,55 +36,55 @@ import org.seasar.dblauncher.preferences.H2Preferences;
  * 
  */
 public class DBRunningDecorator extends LabelProvider implements
-        ILightweightLabelDecorator {
+		ILightweightLabelDecorator {
 
-    public static void updateDecorators(IProject project) {
-        if (project == null) {
-            return;
-        }
-        IWorkbench workbench = PlatformUI.getWorkbench();
-        IDecoratorManager manager = workbench.getDecoratorManager();
-        final DBRunningDecorator decorator = (DBRunningDecorator) manager
-                .getBaseLabelProvider(Constants.ID_DECORATOR);
-        final LabelProviderChangedEvent event = new LabelProviderChangedEvent(
-                decorator, project);
-        PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-            public void run() {
-                decorator.fireLabelProviderChanged(event);
-            }
-        });
-    }
+	public static void updateDecorators(IProject project) {
+		if (project == null) {
+			return;
+		}
+		IWorkbench workbench = PlatformUI.getWorkbench();
+		IDecoratorManager manager = workbench.getDecoratorManager();
+		final DBRunningDecorator decorator = (DBRunningDecorator) manager
+				.getBaseLabelProvider(Constants.ID_DECORATOR);
+		final LabelProviderChangedEvent event = new LabelProviderChangedEvent(
+				decorator, project);
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				decorator.fireLabelProviderChanged(event);
+			}
+		});
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang.Object,
-     *      org.eclipse.jface.viewers.IDecoration)
-     */
-    public void decorate(Object element, IDecoration decoration) {
-        try {
-            if (element instanceof IAdaptable) {
-                IAdaptable adaptable = (IAdaptable) element;
-                IProject project = (IProject) adaptable
-                        .getAdapter(IProject.class);
-                Object o = project
-                        .getSessionProperty(Constants.KEY_SERVER_STATE);
-                H2Preferences pref = DbLauncherPlugin.getPreferences(project);
-                if (o != null && o instanceof ITerminate) {
-                    ITerminate t = (ITerminate) o;
-                    if (t.isTerminated()) {
-                        project.setSessionProperty(Constants.KEY_SERVER_STATE,
-                                null);
-                    } else {
-                        decoration
-                                .addSuffix(" [H2:" + pref.getDbPortNo() + "]");
-                        decoration.addOverlay(Images.RUNNING,
-                                IDecoration.BOTTOM_RIGHT);
-                    }
-                }
-            }
-        } catch (CoreException e) {
-        }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang.Object,
+	 *      org.eclipse.jface.viewers.IDecoration)
+	 */
+	public void decorate(Object element, IDecoration decoration) {
+		try {
+			if (element instanceof IAdaptable) {
+				IAdaptable adaptable = (IAdaptable) element;
+				IProject project = (IProject) adaptable
+						.getAdapter(IProject.class);
+				Object o = project
+						.getSessionProperty(Constants.KEY_SERVER_STATE);
+				H2Preferences pref = DbLauncherPlugin.getPreferences(project);
+				if (o instanceof ITerminate) {
+					ITerminate t = (ITerminate) o;
+					if (t.isTerminated()) {
+						project.setSessionProperty(Constants.KEY_SERVER_STATE,
+								null);
+					} else {
+						decoration
+								.addSuffix(" [H2:" + pref.getDbPortNo() + "]");
+						decoration.addOverlay(Images.RUNNING,
+								IDecoration.BOTTOM_RIGHT);
+					}
+				}
+			}
+		} catch (CoreException e) {
+		}
 
-    }
+	}
 }
