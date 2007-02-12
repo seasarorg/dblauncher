@@ -28,7 +28,7 @@
       <objectContribution
             adaptable="true"
             id="org.seasar.dblauncher.manager"
-            objectClass="org.eclipse.jdt.core.IProject">
+            objectClass="org.eclipse.core.resources.IProject">
          <menu
                id="org.seasar.dblauncher.menu"
                label="H2"
