@@ -14,13 +14,13 @@
       <page
             class="org.seasar.dblauncher.preferences.H2PreferencesPage"
             id="propertyPage"
-            name="%plugin.brand"
+            name="%plugin.label"
             objectClass="org.eclipse.core.resources.IProject"/>
       <page
             adaptable="true"
             class="org.seasar.dblauncher.preferences.H2PreferencesPage"
             id="propertyPage"
-            name="%plugin.brand"
+            name="%plugin.label"
             objectClass="org.eclipse.jdt.core.IJavaProject"/>
    </extension>
    <extension
@@ -166,7 +166,7 @@
             delegate="org.seasar.dblauncher.launch.H2LaunchConfigurationDelegate"
             id="org.seasar.dblauncher.launchConfigurationType"
             modes="run, debug"
-            name="%plugin.brand"
+            name="%plugin.label"
             sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"/>
    </extension>
    <extension
