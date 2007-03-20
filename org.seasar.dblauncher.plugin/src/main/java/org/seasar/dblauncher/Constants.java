@@ -28,6 +28,9 @@ public class Constants {
 
     public static final String ID_DECORATOR = ID_PLUGIN + ".decorator";
 
+    public static final String ID_H2_LAUNCH_CONFIG = ID_PLUGIN
+            + ".launchConfigurationType";
+
     /* ---------------------------------------------------------------------- */
     public static final QualifiedName KEY_SERVER_STATE = new QualifiedName(
             ID_PLUGIN, "serverstate");

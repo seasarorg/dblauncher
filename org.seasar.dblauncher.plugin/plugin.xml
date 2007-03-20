@@ -14,13 +14,13 @@
       <page
             class="org.seasar.dblauncher.preferences.H2PreferencesPage"
             id="propertyPage"
-            name="DbLauncher"
+            name="%plugin.brand"
             objectClass="org.eclipse.core.resources.IProject"/>
       <page
             adaptable="true"
             class="org.seasar.dblauncher.preferences.H2PreferencesPage"
             id="propertyPage"
-            name="DbLauncher"
+            name="%plugin.brand"
             objectClass="org.eclipse.jdt.core.IJavaProject"/>
    </extension>
    <extension
@@ -159,6 +159,29 @@
             defaultHandler="org.seasar.dblauncher.command.StopServerActionHandler"
             id="org.seasar.dblauncher.command.stop"
             name="Stop H2 Server"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.seasar.dblauncher.launch.H2LaunchConfigurationDelegate"
+            id="org.seasar.dblauncher.launchConfigurationType"
+            modes="run, debug"
+            name="%plugin.brand"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.seasar.dblauncher.launch.H2LaunchConfigurationTabGroup"
+            id="org.seasar.dblauncher.launchConfigurationTabGroup"
+            type="org.seasar.dblauncher.launchConfigurationType"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.seasar.dblauncher.launchConfigurationType"
+            icon="icons/h2.gif"
+            id="org.seasar.dblauncher.launchConfigurationTypeImage"/>
    </extension>
 
 </plugin>
