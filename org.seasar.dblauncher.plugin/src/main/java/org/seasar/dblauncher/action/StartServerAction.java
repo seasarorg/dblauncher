@@ -56,7 +56,7 @@ public class StartServerAction extends AbstractProjectAction {
     public void run(IProject project) throws CoreException {
         H2Preferences pref = DbLauncherPlugin.getPreferences(project);
         if (pref != null) {
-            String name = "H2 " + project.getName();
+            String name = project.getName();
             H2ConfigurationBuilder builder = new H2ConfigurationBuilder(name,
                     project, JavaRuntime
                             .newVariableRuntimeClasspathEntry(H2Variable.LIB));
