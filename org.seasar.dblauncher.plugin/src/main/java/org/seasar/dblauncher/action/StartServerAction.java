@@ -21,12 +21,10 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.jdt.launching.IRuntimeClasspathEntry;
 import org.eclipse.jdt.launching.JavaRuntime;
-import org.seasar.dblauncher.Constants;
 import org.seasar.dblauncher.DbLauncherPlugin;
 import org.seasar.dblauncher.decorator.DBRunningDecorator;
 import org.seasar.dblauncher.launch.H2ConfigurationBuilder;
@@ -65,12 +63,8 @@ public class StartServerAction extends AbstractProjectAction {
             builder.setSrcpath(new IRuntimeClasspathEntry[] { JavaRuntime
                     .newVariableRuntimeClasspathEntry(H2SrcVariable.SRC) });
             ILaunchConfiguration config = builder.build();
-            ILaunch launch = config.launch(
-                    pref.isDebug() ? ILaunchManager.DEBUG_MODE
-                            : ILaunchManager.RUN_MODE, null);
-            launch.setAttribute(Constants.KEY_H2_LAUNCH, "TRUE");
-
-            DbLauncherPlugin.setLaunch(project, launch);
+            config.launch(pref.isDebug() ? ILaunchManager.DEBUG_MODE
+                    : ILaunchManager.RUN_MODE, null);
             DBRunningDecorator.updateDecorators(project);
         }
     }
