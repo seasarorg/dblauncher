@@ -2,7 +2,7 @@
 <feature
       id="org.seasar.dblauncher"
       label="%plugin.brand"
-      version="0.0.3"
+      version="0.0.4"
       provider-name="%author">
 
    <copyright>
@@ -36,6 +36,6 @@ governing permissions and limitations under the License.
          id="org.seasar.dblauncher"
          download-size="0"
          install-size="0"
-         version="0.0.3"/>
+         version="0.0.4"/>
 
 </feature>
