@@ -21,8 +21,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.seasar.dblauncher.action.StartServerAction;
+import org.seasar.eclipse.common.util.AdaptableUtil;
 
 /**
  * @author taichi
@@ -48,12 +48,9 @@ public class StartServerActionHandler extends AbstractHandler implements
     public Object execute(ExecutionEvent event) throws ExecutionException {
         try {
             Object o = event.getApplicationContext();
-            if (o instanceof IAdaptable) {
-                IAdaptable a = (IAdaptable) o;
-                IProject project = (IProject) a.getAdapter(IProject.class);
-                if (project != null) {
-                    action.run(project);
-                }
+            IProject project = AdaptableUtil.toProject(o);
+            if (project != null) {
+                action.run(project);
             }
         } catch (CoreException e) {
             throw new ExecutionException("", e);
