@@ -309,5 +309,4 @@ public class H2PreferencesPage extends PropertyPage implements
 
         return composite;
     }
-
 }
