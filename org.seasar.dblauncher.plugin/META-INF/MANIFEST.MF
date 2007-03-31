@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.launching,
  org.seasar.eclipse.common
 Eclipse-LazyStart: true
-Bundle-Vendor: %author
+Bundle-Vendor: %plugin.author
 Bundle-ClassPath: h2.plugin.jar,
  lib/h2.jar
