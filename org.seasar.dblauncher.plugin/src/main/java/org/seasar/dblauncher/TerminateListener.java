@@ -16,13 +16,13 @@
 package org.seasar.dblauncher;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.IDebugEventSetListener;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.seasar.dblauncher.decorator.DBRunningDecorator;
 import org.seasar.eclipse.common.util.LaunchUtil;
-import org.seasar.framework.util.StringUtil;
 
 /**
  * @author taichi
@@ -48,11 +48,17 @@ public class TerminateListener implements IDebugEventSetListener {
             if (event.getKind() == DebugEvent.TERMINATE) {
                 Object o = event.getSource();
                 if (o instanceof IProcess) {
-                    ILaunch l = ((IProcess) o).getLaunch();
-                    if(StringUtil.isEmpty(l.getAttribute(Constants.KEY_H2_LAUNCH)) == false) {
-                        IProject p = LaunchUtil.getProject(l);
-                        DbLauncherPlugin.setLaunch(p, null);
-                        DBRunningDecorator.updateDecorators(p);
+                    try {
+                        ILaunch l = ((IProcess) o).getLaunch();
+                        String id = l.getLaunchConfiguration().getType()
+                                .getIdentifier();
+                        if (Constants.ID_H2_LAUNCH_CONFIG.equals(id)) {
+                            IProject p = LaunchUtil.getProject(l);
+                            DbLauncherPlugin.setLaunch(p, null);
+                            DBRunningDecorator.updateDecorators(p);
+                        }
+                    } catch (CoreException e) {
+                        DbLauncherPlugin.log(e);
                     }
                 }
             }
