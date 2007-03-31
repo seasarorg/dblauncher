@@ -35,9 +35,6 @@ public class Constants {
     public static final QualifiedName KEY_SERVER_STATE = new QualifiedName(
             ID_PLUGIN, "serverstate");
 
-    public static final QualifiedName KEY_PREF = new QualifiedName(ID_PLUGIN,
-            "preferences");
-
     public static final String KEY_H2_LAUNCH = "h2launch";
 
     /* ---------------------------------------------------------------------- */
