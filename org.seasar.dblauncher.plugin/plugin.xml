@@ -9,17 +9,17 @@
       </runtime>
    </extension>
    <extension
-         id="pref"
          point="org.eclipse.ui.propertyPages">
       <page
+            adaptable="true"
             class="org.seasar.dblauncher.preferences.H2PreferencesPage"
-            id="propertyPage"
+            id="org.seasar.dblauncher.propertyPage"
             name="%plugin.label"
             objectClass="org.eclipse.core.resources.IProject"/>
       <page
             adaptable="true"
             class="org.seasar.dblauncher.preferences.H2PreferencesPage"
-            id="propertyPage"
+            id="org.seasar.dblauncher.propertyPage"
             name="%plugin.label"
             objectClass="org.eclipse.jdt.core.IJavaProject"/>
    </extension>
@@ -110,7 +110,6 @@
       </objectContribution>
    </extension>
    <extension
-         id="decorators"
          point="org.eclipse.ui.decorators">
       <decorator
             adaptable="true"
@@ -135,7 +134,6 @@
       <initializer class="org.seasar.dblauncher.preferences.PreferenceInitializer"/>
    </extension>
    <extension
-         id="classpathVariableInitializer"
          point="org.eclipse.jdt.core.classpathVariableInitializer">
       <classpathVariableInitializer
             class="org.seasar.dblauncher.variable.H2Variable"
