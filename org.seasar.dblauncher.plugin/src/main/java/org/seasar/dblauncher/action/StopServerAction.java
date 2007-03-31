@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunch;
 import org.seasar.dblauncher.DbLauncherPlugin;
+import org.seasar.eclipse.common.action.AbstractProjectAction;
 
 /**
  * @author taichi

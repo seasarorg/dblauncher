@@ -33,6 +33,7 @@ import org.seasar.dblauncher.launch.H2ConfigurationBuilder;
 import org.seasar.dblauncher.preferences.H2Preferences;
 import org.seasar.dblauncher.variable.H2SrcVariable;
 import org.seasar.dblauncher.variable.H2Variable;
+import org.seasar.eclipse.common.action.AbstractProjectAction;
 import org.seasar.eclipse.common.util.ProjectUtil;
 
 /**

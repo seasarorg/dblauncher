@@ -24,6 +24,7 @@ import org.eclipse.ui.browser.IWebBrowser;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.seasar.dblauncher.DbLauncherPlugin;
 import org.seasar.dblauncher.preferences.H2Preferences;
+import org.seasar.eclipse.common.action.AbstractProjectAction;
 
 /**
  * @author taichi
