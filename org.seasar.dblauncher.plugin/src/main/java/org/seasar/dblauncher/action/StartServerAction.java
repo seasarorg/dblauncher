@@ -26,7 +26,6 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.jdt.launching.IRuntimeClasspathEntry;
 import org.eclipse.jdt.launching.JavaRuntime;
 import org.seasar.dblauncher.DbLauncherPlugin;
-import org.seasar.dblauncher.decorator.DBRunningDecorator;
 import org.seasar.dblauncher.launch.H2ConfigurationBuilder;
 import org.seasar.dblauncher.preferences.H2Preferences;
 import org.seasar.dblauncher.variable.H2SrcVariable;
@@ -65,7 +64,6 @@ public class StartServerAction extends AbstractProjectAction {
             ILaunchConfiguration config = builder.build();
             config.launch(pref.isDebug() ? ILaunchManager.DEBUG_MODE
                     : ILaunchManager.RUN_MODE, null);
-            DBRunningDecorator.updateDecorators(project);
         }
     }
 

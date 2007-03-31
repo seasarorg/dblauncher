@@ -23,6 +23,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.jdt.launching.JavaLaunchDelegate;
 import org.seasar.dblauncher.DbLauncherPlugin;
+import org.seasar.dblauncher.decorator.DBRunningDecorator;
 import org.seasar.eclipse.common.util.LaunchUtil;
 
 /**
@@ -45,6 +46,7 @@ public class H2LaunchConfigurationDelegate extends JavaLaunchDelegate implements
         IProject project = LaunchUtil.getProject(launch);
         if (project != null && launch.isTerminated() == false) {
             DbLauncherPlugin.setLaunch(project, launch);
+            DBRunningDecorator.updateDecorators(project);
         }
     }
 }
