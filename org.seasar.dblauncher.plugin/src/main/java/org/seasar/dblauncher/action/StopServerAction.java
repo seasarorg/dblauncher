@@ -18,6 +18,7 @@ package org.seasar.dblauncher.action;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunch;
+import org.eclipse.jface.action.IAction;
 import org.seasar.dblauncher.DbLauncherPlugin;
 import org.seasar.eclipse.common.action.AbstractProjectAction;
 
@@ -39,7 +40,7 @@ public class StopServerAction extends AbstractProjectAction {
      * 
      * @see org.seasar.h2.action.AbstractProjectAction#run(org.eclipse.core.resources.IProject)
      */
-    public void run(IProject project) throws CoreException {
+    public void run(IAction action, IProject project) throws CoreException {
         ILaunch launch = DbLauncherPlugin.getLaunch(project);
         if (launch != null) {
             launch.terminate();

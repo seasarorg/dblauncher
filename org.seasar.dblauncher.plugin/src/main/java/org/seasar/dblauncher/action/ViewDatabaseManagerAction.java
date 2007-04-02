@@ -19,6 +19,7 @@ import java.net.URL;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.browser.IWebBrowser;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
@@ -44,7 +45,7 @@ public class ViewDatabaseManagerAction extends AbstractProjectAction {
      * 
      * @see org.seasar.h2.action.AbstractProjectAction#run(org.eclipse.core.resources.IProject)
      */
-    public void run(IProject project) throws CoreException {
+    public void run(IAction action, IProject project) throws CoreException {
         try {
             H2Preferences pref = DbLauncherPlugin.getPreferences(project);
             if (pref != null) {

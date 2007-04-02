@@ -43,7 +43,7 @@ public class StopServerActionHandler extends AbstractHandler implements
             Object o = event.getApplicationContext();
             IProject project = AdaptableUtil.toProject(o);
             if (project != null) {
-                action.run(project);
+                action.run(null, project);
             }
         } catch (CoreException e) {
             throw new ExecutionException("", e);
