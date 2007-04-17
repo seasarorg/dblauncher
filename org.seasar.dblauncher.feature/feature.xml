@@ -27,12 +27,6 @@ governing permissions and limitations under the License.
    </url>
 
    <plugin
-         id="org.seasar.eclipse.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.3"/>
-
-   <plugin
          id="org.seasar.dblauncher"
          download-size="0"
          install-size="0"
