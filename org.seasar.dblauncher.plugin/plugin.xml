@@ -159,6 +159,7 @@
             name="Stop H2 Server"/>
    </extension>
    <extension
+         id="launchConfigurationTypes"
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
             delegate="org.seasar.dblauncher.launch.H2LaunchConfigurationDelegate"
