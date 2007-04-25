@@ -26,6 +26,7 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.jdt.launching.IRuntimeClasspathEntry;
 import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.jface.action.IAction;
+import org.seasar.dblauncher.Constants;
 import org.seasar.dblauncher.DbLauncherPlugin;
 import org.seasar.dblauncher.launch.H2ConfigurationBuilder;
 import org.seasar.dblauncher.preferences.H2Preferences;
@@ -50,9 +51,9 @@ public class StartServerAction extends AbstractProjectAction {
     public void run(IAction action, IProject project) throws CoreException {
         H2Preferences pref = DbLauncherPlugin.getPreferences(project);
         if (pref != null) {
-            String name = project.getName();
-            H2ConfigurationBuilder builder = new H2ConfigurationBuilder(name,
-                    project, JavaRuntime
+            H2ConfigurationBuilder builder = new H2ConfigurationBuilder(
+                    Constants.ID_PLUGIN + "." + project.getName(), project,
+                    JavaRuntime
                             .newVariableRuntimeClasspathEntry(H2Variable.LIB));
             builder.setArgs(buildBootArgs(pref));
             builder.setSrcpath(new IRuntimeClasspathEntry[] { JavaRuntime
